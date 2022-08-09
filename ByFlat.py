@@ -16,11 +16,11 @@ class CSSconst(Enum):
     button_flat = "html body div.col-12.col-md-6.col-xl-4.m-1.table-responsive table.table_main.table.table-hover tbody tr td button"
     text_entrance = "html body.modal-open div#checkList_dialog.modal.fade.show div.modal-dialog.modal-dialog-centered.modal-lg div.modal-content div#checkListDialog_text.modal-body form#check_list_form div.m-1.text-right b"
 
+
 class ByFlat:
     def __init__(self, address):
         self.address = address
         self.browser = Browser(address).browser
-
 
     def open_window_of_addition(browser):
         element = browser.find_elements_by_css_selector(CSSconst.button_flat.value)
@@ -28,7 +28,6 @@ class ByFlat:
             element[0].click()
         else:
             print(f"Не видит кнопку. Длина равна {len(element)}")
-
 
     def Max_entrance(browser):
         entrance_text = browser.find_element_by_css_selector(CSSconst.text_entrance.value).text
@@ -72,4 +71,3 @@ class ByFlat:
             "html body.modal-open div#checkList_dialog.modal.fade.show div.modal-dialog.modal-dialog-centered.modal-lg div.modal-content div.modal-footer button.m-1.btn.btn-secondary")
         browser.execute_script("arguments[0].click();", close)
         browser.quit()
-

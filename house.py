@@ -13,9 +13,27 @@ import re
 
 
 class CSSconst(Enum):
-    #button_house = "html body div.col-12.col-md-6.col-xl-4.m-1.table-responsive table.table_main.table.table-hover tbody tr td button#button_visualization_9145316216413372960.btn.btn-warning"
     button_house = "button"
-    text_entrance = "html body.modal-open div#checkList_dialog.modal.fade.show div.modal-dialog.modal-dialog-centered.modal-lg div.modal-content div#checkListDialog_text.modal-body form#check_list_form div.m-1.text-right b"
+    text_entrance = "html body.modal-open div#checkList_dialog.modal.fade.show " \
+                    "div.modal-dialog.modal-dialog-centered.modal-lg div.modal-content " \
+                    "div#checkListDialog_text.modal-body form#check_list_form div.m-1.text-right b "
+    radio1 = "html body.modal-open div#checkList_dialog.modal.fade.show " \
+             "div.modal-dialog.modal-dialog-centered.modal-lg div.modal-content " \
+             "div#checkListDialog_text.modal-body form#check_list_form div.table-responsive " \
+             "table.table.table_main.table-hover tbody tr td " \
+             "div.custom-control.custom-radio.custom-control-inline " \
+             "input#sticker_drs_1.custom-control-input.cRequired_class "
+    radio2 = "html body.modal-open div#checkList_dialog.modal.fade.show " \
+             "div.modal-dialog.modal-dialog-centered.modal-lg div.modal-content div#checkListDialog_text.modal-body " \
+             "form#check_list_form div.table-responsive table.table.table_main.table-hover tbody tr td " \
+             "div.custom-control.custom-radio.custom-control-inline input#sticker_drs_change_0.custom-control-input "
+    save = "html body.modal-open div#checkList_dialog.modal.fade.show div.modal-dialog.modal-dialog-centered.modal-lg " \
+           "div.modal-content div#checkListDialog_text.modal-body form#check_list_form " \
+           "div.form-group.col-12.p-0.text-right button.m-1.btn.btn-primary.button_save "
+    yes = "html body.modal-open div#confirm_dialog.modal.fade.show div.modal-dialog.modal-dialog-centered " \
+          "div.modal-content div.modal-footer button#confirmDialog_buttonYes.m-1.btn.btn-primary "
+    close = "html body.modal-open div#confirm_dialog.modal.fade.show div.modal-dialog.modal-dialog-centered " \
+            "div.modal-content div.modal-footer button#confirmDialog_buttonYes.m-1.btn.btn-primary"
 
 
 class House:
@@ -26,7 +44,7 @@ class House:
 
     def open_window_of_addition(browser):
         element = browser.find_elements_by_tag_name(CSSconst.button_house.value)
-        #for _ in element:
+        # for _ in element:
         #    print(_.get_attribute('innerHTML'))
         if len(element) != 0:
             element[7].click()
@@ -49,11 +67,9 @@ class House:
             print(entrance)
             select_object.select_by_value(str(entrance))
             sleep(10)
-            radio1 = browser.find_element_by_css_selector(
-                "html body.modal-open div#checkList_dialog.modal.fade.show div.modal-dialog.modal-dialog-centered.modal-lg div.modal-content div#checkListDialog_text.modal-body form#check_list_form div.table-responsive table.table.table_main.table-hover tbody tr td div.custom-control.custom-radio.custom-control-inline input#sticker_drs_1.custom-control-input.cRequired_class")
+            radio1 = browser.find_element_by_css_selector(CSSconst.radio1)
             browser.execute_script("arguments[0].click();", radio1)
-            radio2 = browser.find_element_by_css_selector(
-                "html body.modal-open div#checkList_dialog.modal.fade.show div.modal-dialog.modal-dialog-centered.modal-lg div.modal-content div#checkListDialog_text.modal-body form#check_list_form div.table-responsive table.table.table_main.table-hover tbody tr td div.custom-control.custom-radio.custom-control-inline input#sticker_drs_change_0.custom-control-input")
+            radio2 = browser.find_element_by_css_selector(CSSconst.radio2)
             browser.execute_script("arguments[0].click();", radio2)
             radio3 = browser.find_elements_by_id("heavy_media_1")
             browser.execute_script("arguments[0].click();", radio3[0])
@@ -67,16 +83,13 @@ class House:
             browser.execute_script("arguments[0].click();", radio7)
             radio8 = browser.find_element_by_id("flyer_provider_0")
             browser.execute_script("arguments[0].click();", radio8)
-            save_one = browser.find_elements_by_css_selector(
-                "html body.modal-open div#checkList_dialog.modal.fade.show div.modal-dialog.modal-dialog-centered.modal-lg div.modal-content div#checkListDialog_text.modal-body form#check_list_form div.form-group.col-12.p-0.text-right button.m-1.btn.btn-primary.button_save")
+            save_one = browser.find_elements_by_css_selector(CSSconst.save)
             save_one[0].click()
             sleep(4800 // count)
         finish = browser.find_element_by_id("button_checkListComplete")
         finish.click()
-        yes = browser.find_elements_by_css_selector(
-            "html body.modal-open div#confirm_dialog.modal.fade.show div.modal-dialog.modal-dialog-centered div.modal-content div.modal-footer button#confirmDialog_buttonYes.m-1.btn.btn-primary")
+        yes = browser.find_elements_by_css_selector(CSSconst.yes)
         yes[0].click()
         sleep(5)
-        close = browser.find_elements_by_css_selector(
-            "html body.modal-open div#checkList_dialog.modal.fade.show div.modal-dialog.modal-dialog-centered.modal-lg div.modal-content div.modal-footer button.m-1.btn.btn-secondary")
+        close = browser.find_elements_by_css_selector(CSSconst.close)
         close[0].click()

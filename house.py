@@ -14,30 +14,41 @@ import re
 
 class CSSconst(Enum):
     button_house = "button"
-    text_entrance = "html body.modal-open div#checkList_dialog.modal.fade.show " \
-                    "div.modal-dialog.modal-dialog-centered.modal-lg div.modal-content " \
-                    "div#checkListDialog_text.modal-body form#check_list_form div.m-1.text-right b "
-    radio1 = "html body.modal-open div#checkList_dialog.modal.fade.show " \
-             "div.modal-dialog.modal-dialog-centered.modal-lg div.modal-content " \
-             "div#checkListDialog_text.modal-body form#check_list_form div.table-responsive " \
-             "table.table.table_main.table-hover tbody tr td " \
-             "div.custom-control.custom-radio.custom-control-inline " \
-             "input#sticker_drs_1.custom-control-input.cRequired_class "
-    radio2 = "html body.modal-open div#checkList_dialog.modal.fade.show " \
-             "div.modal-dialog.modal-dialog-centered.modal-lg div.modal-content div#checkListDialog_text.modal-body " \
-             "form#check_list_form div.table-responsive table.table.table_main.table-hover tbody tr td " \
-             "div.custom-control.custom-radio.custom-control-inline input#sticker_drs_change_0.custom-control-input "
-    save = "html body.modal-open div#checkList_dialog.modal.fade.show div.modal-dialog.modal-dialog-centered.modal-lg " \
-           "div.modal-content div#checkListDialog_text.modal-body form#check_list_form " \
-           "div.form-group.col-12.p-0.text-right button.m-1.btn.btn-primary.button_save "
-    yes = "html body.modal-open div#confirm_dialog.modal.fade.show div.modal-dialog.modal-dialog-centered " \
-          "div.modal-content div.modal-footer button#confirmDialog_buttonYes.m-1.btn.btn-primary "
-    close = "html body.modal-open div#confirm_dialog.modal.fade.show div.modal-dialog.modal-dialog-centered " \
-            "div.modal-content div.modal-footer button#confirmDialog_buttonYes.m-1.btn.btn-primary"
+    text_entrance = (
+        "html body.modal-open div#checkList_dialog.modal.fade.show "
+        "div.modal-dialog.modal-dialog-centered.modal-lg div.modal-content "
+        "div#checkListDialog_text.modal-body form#check_list_form div.m-1.text-right b "
+    )
+    radio1 = (
+        "html body.modal-open div#checkList_dialog.modal.fade.show "
+        "div.modal-dialog.modal-dialog-centered.modal-lg div.modal-content "
+        "div#checkListDialog_text.modal-body form#check_list_form div.table-responsive "
+        "table.table.table_main.table-hover tbody tr td "
+        "div.custom-control.custom-radio.custom-control-inline "
+        "input#sticker_drs_1.custom-control-input.cRequired_class "
+    )
+    radio2 = (
+        "html body.modal-open div#checkList_dialog.modal.fade.show "
+        "div.modal-dialog.modal-dialog-centered.modal-lg div.modal-content div#checkListDialog_text.modal-body "
+        "form#check_list_form div.table-responsive table.table.table_main.table-hover tbody tr td "
+        "div.custom-control.custom-radio.custom-control-inline input#sticker_drs_change_0.custom-control-input "
+    )
+    save = (
+        "html body.modal-open div#checkList_dialog.modal.fade.show div.modal-dialog.modal-dialog-centered.modal-lg "
+        "div.modal-content div#checkListDialog_text.modal-body form#check_list_form "
+        "div.form-group.col-12.p-0.text-right button.m-1.btn.btn-primary.button_save "
+    )
+    yes = (
+        "html body.modal-open div#confirm_dialog.modal.fade.show div.modal-dialog.modal-dialog-centered "
+        "div.modal-content div.modal-footer button#confirmDialog_buttonYes.m-1.btn.btn-primary "
+    )
+    close = (
+        "html body.modal-open div#confirm_dialog.modal.fade.show div.modal-dialog.modal-dialog-centered "
+        "div.modal-content div.modal-footer button#confirmDialog_buttonYes.m-1.btn.btn-primary"
+    )
 
 
 class House:
-
     def __init__(self, address):
         self.address = address
         self.browser = Browser(address).browser
@@ -58,7 +69,9 @@ class House:
         sleep(10)
         House.open_window_of_addition(browser)
         sleep(10)
-        count_element = browser.find_element_by_css_selector(CSSconst.text_entrance.value)
+        count_element = browser.find_element_by_css_selector(
+            CSSconst.text_entrance.value
+        )
         print(type(count_element))
         count = int(count_element.text)
         for entrance in range(1, count + 1):

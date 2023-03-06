@@ -30,7 +30,9 @@ class ByFlat:
             print(f"Не видит кнопку. Длина равна {len(element)}")
 
     def Max_entrance(browser):
-        entrance_text = browser.find_element_by_css_selector(CSSconst.text_entrance.value).text
+        entrance_text = browser.find_element_by_css_selector(
+            CSSconst.text_entrance.value
+        ).text
         if int(entrance_text) > 50:
             max = 50
         else:
@@ -56,18 +58,22 @@ class ByFlat:
             select_object = Select(select_element)
             select_object.select_by_value(str(v))
             save = browser.find_elements_by_css_selector(
-                "html body.modal-open div#checkList_dialog.modal.fade.show div.modal-dialog.modal-dialog-centered.modal-lg div.modal-content div#checkListDialog_text.modal-body form#check_list_form div.form-group.row.m-1 div.col-12.p-0.text-right button.m-1.btn.btn-primary.button_save")
+                "html body.modal-open div#checkList_dialog.modal.fade.show div.modal-dialog.modal-dialog-centered.modal-lg div.modal-content div#checkListDialog_text.modal-body form#check_list_form div.form-group.row.m-1 div.col-12.p-0.text-right button.m-1.btn.btn-primary.button_save"
+            )
             browser.execute_script("arguments[0].click();", save[0])
             v = 2
             sleep(90)
         finish = browser.find_elements_by_css_selector(
-            "html body.modal-open div#checkList_dialog.modal.fade.show div.modal-dialog.modal-dialog-centered.modal-lg div.modal-content div.modal-footer button#button_checkListComplete.m-1.btn.btn-success.button_save")
+            "html body.modal-open div#checkList_dialog.modal.fade.show div.modal-dialog.modal-dialog-centered.modal-lg div.modal-content div.modal-footer button#button_checkListComplete.m-1.btn.btn-success.button_save"
+        )
         finish[0].click()
         sleep(10)
         yes = browser.find_elements_by_css_selector(
-            "html body.modal-open div#confirm_dialog.modal.fade.show div.modal-dialog.modal-dialog-centered div.modal-content div.modal-footer button#confirmDialog_buttonYes.m-1.btn.btn-primary")
+            "html body.modal-open div#confirm_dialog.modal.fade.show div.modal-dialog.modal-dialog-centered div.modal-content div.modal-footer button#confirmDialog_buttonYes.m-1.btn.btn-primary"
+        )
         yes[0].click()
         close = browser.find_elements_by_css_selector(
-            "html body.modal-open div#checkList_dialog.modal.fade.show div.modal-dialog.modal-dialog-centered.modal-lg div.modal-content div.modal-footer button.m-1.btn.btn-secondary")
+            "html body.modal-open div#checkList_dialog.modal.fade.show div.modal-dialog.modal-dialog-centered.modal-lg div.modal-content div.modal-footer button.m-1.btn.btn-secondary"
+        )
         browser.execute_script("arguments[0].click();", close)
         browser.quit()

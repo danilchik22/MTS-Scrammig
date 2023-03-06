@@ -9,6 +9,10 @@ import os
 
 
 def get_location(address):
+    """
+    Функция получения геолокации по адресу. Принимает на вход адрес, возвращает
+    широту и долготу этого адреса.
+    """
     url = "https://www.google.com/maps/search/Барнаул " + address
     opts = webdriver.FirefoxOptions()
     opts.headless = True

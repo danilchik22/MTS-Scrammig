@@ -13,6 +13,9 @@ import re
 
 
 class CSSconst(Enum):
+    """
+    Здесь объявляются константы для поиска элементов по их CSS-селектору.
+    """
     button_flat = "html body div.col-12.col-md-6.col-xl-4.m-1.table-responsive table.table_main.table.table-hover tbody tr td button"
     text_entrance = "html body.modal-open div#checkList_dialog.modal.fade.show div.modal-dialog.modal-dialog-centered.modal-lg div.modal-content div#checkListDialog_text.modal-body form#check_list_form div.m-1.text-right b"
 
@@ -23,6 +26,10 @@ class ByFlat:
         self.browser = Browser(address).browser
 
     def open_window_of_addition(browser):
+        """
+        Функция перехода в окне, в котором будет происходить заполнение
+        квартир.
+        """
         element = browser.find_elements_by_css_selector(CSSconst.button_flat.value)
         if len(element) != 0:
             element[0].click()
@@ -30,6 +37,8 @@ class ByFlat:
             print(f"Не видит кнопку. Длина равна {len(element)}")
 
     def Max_entrance(browser):
+        """
+        Функция определения, сколько всего квартир в выбранном доме"""
         entrance_text = browser.find_element_by_css_selector(
             CSSconst.text_entrance.value
         ).text
@@ -40,6 +49,7 @@ class ByFlat:
         return max
 
     def flat(self):
+        """ Главная функция заполнения поквартирного обхода"""
         browser = Browser(self.address).browser
         browser.get("http://inventory.ural.mts.ru/pc/agent_day.php")
         auth(browser)

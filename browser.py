@@ -10,6 +10,11 @@ class Browser:
         self.browser = Browser.init_browser(address)
 
     def init_browser(address):
+        """
+        Функция инициализации окна бразуера. Принимает на вход адрес, 
+        который должен быть использован в геолокации при запуске браузера.
+        Уставливает необходимую гелокацию для этого окна при создании окна. 
+        """
         binary = FirefoxBinary("C:\\Program Files\\Mozilla Firefox\\firefox.exe")
         profile = FirefoxProfile(
             "C:\\Users\\111\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles\\w8iy627a.debanjan"

@@ -54,6 +54,10 @@ class House:
         self.browser = Browser(address).browser
 
     def open_window_of_addition(browser):
+        """
+        Функция перехода в окне, в котором будет происходить заполнение
+        дома нужными подъездами.
+        """
         element = browser.find_elements_by_tag_name(CSSconst.button_house.value)
         # for _ in element:
         #    print(_.get_attribute('innerHTML'))
@@ -63,6 +67,9 @@ class House:
             print(f"Не видит кнопку. Длина равна {len(element)}")
 
     def house(self):
+        """
+        Основная функция заполнения визуализации подъездами
+        """
         browser = Browser(self.address).browser
         browser.get("http://inventory.ural.mts.ru/pc/agent_day.php")
         auth(browser)
